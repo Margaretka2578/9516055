@@ -50,7 +50,7 @@ body {
 
 .header {
   height: 1044px;
-  background: url("/images/header_bg.jpg") center no-repeat;
+  background: url("../images/header_bg.jpg") center no-repeat;
 }
 
 @media (max-width: 1270px) {
