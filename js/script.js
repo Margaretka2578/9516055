@@ -153,8 +153,40 @@ function closeDialog() {
  */
 
 function sendForm(frm) {
-    let nameForm = frm.getAttribute('name');
+    let nameForm,
+        userName,
+        userPhone,
+        userMail,
+        userMessage,
+        nullField,
+        data = {},
+        captcha,
+        captchaError = document.getElementById('recaptchaError');
+        
+    nameForm = frm.getAttribute('name');
     data.form = nameForm;
+
+    userName = validateName(frm.querySelector('[name="name"]'));
+    userPhone = validatePhone(frm.querySelector('[name="phone"]'));
+    userMail = validateEmail(frm.querySelector('[name="mail"]'));
+
+
+    if (frm.querySelector('[name="null-field"]')) {
+
+        nullField = frm.querySelector('[name="null-field"]');
+
+        if (nullField.value !== "") {
+
+            alert('Ошибка передачи данных');
+            frm.reset();
+            return false;
+
+        }
+    }
+
+    if (userName === false || userPhone === false || userMail === false) {
+        return false;
+    }
 
     if (nameForm === 'result-calc-form') {
 
@@ -202,11 +234,11 @@ function sendForm(frm) {
             data.heightFence = fieldsCalc[0][fieldsCalc[0].options.selectedIndex].innerText;
             data.thicknessFence = fieldsCalc[1][fieldsCalc[1].options.selectedIndex].innerText;
             data.widthFence = fieldsCalc[2].value;
-            data.typeColor = fieldsCalc[3][fieldsCalc[3].options.selectedIndex].innerText;
-            data.gateFence = fieldsCalc[4][fieldsCalc[4].options.selectedIndex].innerText;
-            data.swingGates = fieldsCalc[6][fieldsCalc[6].options.selectedIndex].innerText;
-            data.slidingGates = fieldsCalc[7][fieldsCalc[7].options.selectedIndex].innerText;
-            data.autoDrive = fieldsCalc[8][fieldsCalc[8].options.selectedIndex].innerText;
+            data.typeColor = fieldsCalc[4][fieldsCalc[4].options.selectedIndex].innerText;
+            data.gateFence = fieldsCalc[6][fieldsCalc[6].options.selectedIndex].innerText;
+            data.swingGates = fieldsCalc[7][fieldsCalc[7].options.selectedIndex].innerText;
+            data.slidingGates = fieldsCalc[8][fieldsCalc[8].options.selectedIndex].innerText;
+            data.autoDrive = fieldsCalc[9][fieldsCalc[9].options.selectedIndex].innerText;
             data.km = fieldsCalc[5].value;
             let a = parseInt(calcResultBlock.innerText);
             let b = parseInt(calcDelivery.innerText);
