@@ -153,24 +153,32 @@
                         <p>Для забора из профнастила С-8 со столбами 80*80*3&nbsp;мм (квадратные) каждые 2,5&nbsp;м и тремя лагами 20*40*2&nbsp;мм (прямоугольные) или двумя лагами для заборов 
                             высотой 1,6&nbsp;м и 1,3&nbsp;м. </p>
                         <p>В стоимость включены материал (в том числе ворота и калитка) и монтажные работы. Все под ключ!</p>
-                        <p class="bigger">Доставка (манипулятор): 7570&nbsp;р.<br>
-                        Секций: 1 (2,40&nbsp;м<sup>2</sup>), 8298&nbsp;р.</p>
+                        <p class="bigger">Доставка (манипулятор): <span id="calcDelivery">7500</span>&nbsp;р.<br>
+                        Секций: <span id="calcSection">0 (0.00 м²)</span>, <span id="calcTotalSum">7500</span>&nbsp;р.</p>
 
                     </div>
                 </div>
                 <div class="calculator-content-right">
                     <div class="calculator-form">
                         <div class="calculator-form-inn">
-                            <form>
+                            <form id="calcForm" class="calculator-container" name="calculator-container" onsubmit="return false;">
                                 <div class="calculator-form-item">
                                     <div class="calculator-form-item-name">
                                         Высота забора     
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="2">2 м</option>
-                                            <option value="2.2">2,2 м</option>
-                                            <option value="2.5">2,5 м</option>
+                                        <select id="height" name="height">
+                                            <option value="0.7">1,3 м</option>
+                                            <option value="0.8">1,6 м</option>
+                                            <option value="0.9">1,8 м</option>
+                                            <option selected value="1">2 м</option>
+                                            <option value="1.1">2,2 м</option>
+                                            <option value="1.2">2,5 м</option>
+                                            <option value="1.3">3 м</option>
+                                            <option value="1.4">3,5 м</option>
+                                            <option value="1.5">4 м</option>
+                                            <option value="1.6">4,5 м</option>
+                                            <option value="1.7">5 м</option>
                                         </select>
                                     </div>
                                 </div>
@@ -179,10 +187,13 @@
                                         Толщина профнастила
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="0.37">0,37 м</option>
-                                            <option value="0.4">0,4 м</option>
-                                            <option value="0.45">0,45 м</option>
+                                        <select id="thickness" name="thickness">
+                                            <option selected value="0.8">0,37 м</option>
+                                            <option value="1">0,4 м</option>
+                                            <option value="1.15">0,45 м</option>
+                                            <option value="1.25">0,5 м</option>
+                                            <option value="1.30">0,55 м</option>
+                                            <option value="1.35">0,6 м</option>
                                         </select>
                                     </div>
                                 </div>
@@ -191,7 +202,7 @@
                                         Длина забора в метрах
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <input type="number" value="1">
+                                        <input type="number" id="width" name="width" value="1" step="1" min="1">
                                     </div>
                                 </div>   
                                 <div class="calculator-form-additional-info">
@@ -199,7 +210,7 @@
                                         Включая длину ворот и калиток
                                     </div>
                                     <div class="calculator-form-additional-info-check">
-                                        <input type="checkbox">    
+                                        <input type="checkbox" id="unclude-gate" name="unclude-gates">    
                                     </div>
                                 </div>  
                                 <div class="calculator-form-item">
@@ -207,9 +218,10 @@
                                         Покраска
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
+                                        <select id="type-color" name="type-color     ">
                                             <option selected value="1">Покраска с одной стороны</option>
-                                            <option value="2">Покраска с двух сторон</option>                                           
+                                            <option value="2">Покраска с двух сторон</option>    
+                                            <option value="0">Оцинковка</option>
                                         </select>
                                     </div>
                                 </div>
@@ -218,7 +230,7 @@
                                         Км от КАД
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <input type="number" value="1">
+                                        <input type="number" value="0" id="km" name="km" step="1" min="0">
                                     </div>
                                 </div>
                                 <div class="calculator-form-item">
@@ -226,10 +238,13 @@
                                         Калитка 1м, шт.
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="none">Без калитки</option>
+                                        <select id="gate" name="gate">
+                                            <option selected value="0">Без калитки</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
                                         </select>
                                     </div>
                                 </div>
@@ -238,10 +253,11 @@
                                         Ворота распашные
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="none">Нет</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+                                        <select id="swing-gates" name="swing-gates">
+                                            <option selected value="0">Нет</option>
+                                            <option value="3.45">Распашные ворота 3,45 м</option>
+                                            <option value="4.35">Распашные ворота 4,35 м</option>
+                                            <option value="5.25">Распашные ворота 5,25 м</option>
                                         </select>
                                     </div>
                                 </div>
@@ -250,10 +266,12 @@
                                         Ворота откатные
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="none">Нет</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+                                        <select id="sliding-gates" name="sliding-gates">
+                                            <option selected value="0">Нет</option>
+                                            <option value="3">Откатные ворота 3 м</option>
+                                            <option value="4">Откатные ворота 4 м</option>
+                                            <option value="5">Откатные ворота 5 м</option>
+                                            <option value="7">Откатные ворота 7 м</option>
                                         </select>
                                     </div>
                                 </div>
@@ -262,18 +280,20 @@
                                         Автопривод
                                     </div>
                                     <div class="calculator-form-item-value">
-                                        <select>
-                                            <option selected value="none">Без привода</option>
-                                            <option value="yes">С приводом</option>                                           
+                                        <select id="auto-drive" name="auto-drive">
+                                            <option selected value="0">Без привода</option>
+                                            <option value="15000">Китай</option>
+                                            <option value="20000">Италия</option>
+                                            <option value="26000">Германия</option>  
                                         </select>
                                     </div>
                                 </div>
                                 <div class="calculator-form-total">
                                     <div class="calculator-form-total-value">
-                                        ВСЕГО: 1040 р.
+                                        ВСЕГО: <span id="calcResult">0</span> р.
                                     </div>
                                     <div class="calculator-form-send-total">
-                                        <input type="button" class="send-total" value="Отправить расчеты на почту">
+                                        <input type="button" class="send-total" onclick="openDialog('result-calc-form')" value="Отправить расчеты на почту">
                                     </div>
                                 </div>
                             </form>
@@ -688,6 +708,105 @@
             &copy; ЗАБОРЫ ПОД КЛЮЧ. Все права защищены. Копирование материалов без письменного разрешения владельца запрещено. 
         </footer>
     </div>
+    
+    <div class="curtain flex-block">
+    
+        <div class="modal-wrapper">
+    
+            <button class="close" onclick="closeDialog()">Закрыть</button>
+    
+            <div class='frm-body'>
+    
+                <!-- Форма оформления заказа на бесплатную консультацию -->
+                <form action="" class="sub-form" name="consultation-form" onsubmit="return sendForm(this);">
+                    <div class="sub_input">
+                        <label for="name"></label>
+                        <input type="text" name="name" placeholder="Введите имя">
+                    </div>
+                    <div class="sub_input">
+                        <label for="phone"></label>
+                        <input type="text" name="phone" placeholder="Введите телефон">
+                    </div>
+                    <div class="sub_input">
+                        <label for="mail"></label>
+                        <input type="email" name="mail" placeholder="Введите e-mail">
+                    </div>
+                    <div class="sub_input visually-hidden">
+                        <label for=""></label>
+                        <input type="text" name="null-field" placeholder="Не заполняйте это поле">
+                    </div>
+                    <div class="sub_button">
+                        <input class="subBtn btn-orange" type="submit" value="Отправить данные">
+                    </div>
+                </form>
+    
+                <!-- Форма отправки результатов расчёта -->
+                <form action="" class="sub-form" name="result-calc-form" onsubmit="return sendForm(this);">
+                    <div class="sub_input">
+                        <label for="name"></label>
+                        <input type="text" name="name" placeholder="Введите имя">
+                    </div>
+                    <div class="sub_input">
+                        <label for="phone"></label>
+                        <input type="text" name="phone" placeholder="Введите телефон">
+                    </div>
+                    <div class="sub_input">
+                        <label for="mail"></label>
+                        <input type="email" name="mail" placeholder="Введите e-mail">
+                    </div>
+                    <div class="sub_input visually-hidden">
+                        <label for=""></label>
+                        <input type="text" name="null-field" placeholder="Не заполняйте это поле">
+                    </div>
+                    <div class="sub_button">
+                        <input class="subBtn btn-orange" type="submit" value="Отправить данные">
+                    </div>
+                </form>
+    
+                <div class="result-send success-result">
+                    <div class="icon-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                            <path d="M36 17L22 33l-8-7" stroke-miterlimit="10" fill="none" stroke="#1de9b6"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M25 0A25 25 0 000 25a25 25 0 0025 25 25 25 0 0025-25A25 25 0 0025 0zm0 3a22 22 0 0122 22 22 22 0 01-22 22A22 22 0 013 25 22 22 0 0125 3z"
+                                fill="#ccc" />
+                        </svg>
+                    </div>
+                    <div class="message-result"></div>
+                </div>
+    
+                <div class="result-send error-result">
+                    <div class="icon-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                            <path
+                                d="M25 0A25 25 0 000 25a25 25 0 0025 25 25 25 0 0025-25A25 25 0 0025 0zm0 3a22 22 0 0122 22 22 22 0 01-22 22A22 22 0 013 25 22 22 0 0125 3z"
+                                fill="#ccc" />
+                            <path fill="#d40000" d="M13 20h25v10H13z" />
+                        </svg>
+                    </div>
+                    <div class="message-result"></div>
+                </div>
+    
+                <div class="result-send subscrube-result">
+                    <div class="icon-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                            <path d="M36 17L22 33l-8-7" stroke-miterlimit="10" fill="none" stroke="#1de9b6"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M25 0A25 25 0 000 25a25 25 0 0025 25 25 25 0 0025-25A25 25 0 0025 0zm0 3a22 22 0 0122 22 22 22 0 01-22 22A22 22 0 013 25 22 22 0 0125 3z"
+                                fill="#ccc" />
+                        </svg>
+                    </div>
+                    <div class="message-result"></div>
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/script.js"></script>
 </body>
