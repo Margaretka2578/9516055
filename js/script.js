@@ -162,7 +162,7 @@ function sendForm(frm) {
         data = {},
         captcha,
         captchaError = document.getElementById('recaptchaError');
-        
+
     nameForm = frm.getAttribute('name');
     data.form = nameForm;
 
@@ -475,8 +475,8 @@ $(function(){
  */
 function calcCurrentResult(e) {
 
-    let heightFence = parseInt(fieldsCalc[0][fieldsCalc[0].options.selectedIndex].value);
-    let thickFence =  parseInt(fieldsCalc[1][fieldsCalc[1].options.selectedIndex].value);
+    let heightFence = parseFloat(fieldsCalc[0][fieldsCalc[0].options.selectedIndex].value);
+    let thickFence =  parseFloat(fieldsCalc[1][fieldsCalc[1].options.selectedIndex].value);
     let widthFence = parseFloat(fieldsCalc[2].value);
     let typeColor = parseInt(fieldsCalc[4][fieldsCalc[4].options.selectedIndex].value);
     let km = parseInt(fieldsCalc[5].value);
@@ -508,7 +508,7 @@ function calcCurrentResult(e) {
     //costFence *= calcCurrentValue['height'];
     //costFence *= calcCurrentValue['thickness'];
 
-    costFence += calcData['baseCost'] + calcData['typeColor'][typeColor];
+    costFence += parseInt(calcData['baseCost']) + parseInt(calcData['typeColor'][typeColor]);
     costFence *= heightFence;
     costFence *= thickFence;
     
@@ -527,6 +527,7 @@ function calcCurrentResult(e) {
    }
    
    console.log('widthFence = ', widthFence);
+   console.log('heightFence = ', heightFence);
    costFence *= widthFence;
    
    // Плюсуем стоимость калитки, ворот и автопривода
@@ -535,9 +536,9 @@ function calcCurrentResult(e) {
     //costFence += calcData['slidingGates'][calcCurrentValue['sliding-gates']];
     //costFence += +calcCurrentValue['auto-drive'];
 
-    costFence += calcData['costGate'][gateFence];
-    costFence += calcData['swingGates'][swingGates];
-    costFence += calcData['slidingGates'][slidingGates];
+    costFence += parseInt(calcData['costGate'][gateFence]);
+    costFence += parseInt(calcData['swingGates'][swingGates]);
+    costFence += parseInt(calcData['slidingGates'][slidingGates]);
     costFence += autoDrive; 
 
     costFence = Math.ceil(costFence);
@@ -547,7 +548,8 @@ function calcCurrentResult(e) {
 
    // if (nameElem === 'km') {
         //calcDelivery.innerText = Math.ceil(calcData['delivery'] + (changeElem.value * calcData['km'])); 
-        calcDelivery.innerText = Math.ceil(calcData['delivery'] + (km * calcData['km']));
+        let costDelivery = Math.ceil(calcData['delivery'] + (km * calcData['km']));
+        calcDelivery.innerText = costDelivery;
    // }
 
     let quantitySection = Math.ceil(widthFence / 1.15);
@@ -557,13 +559,13 @@ function calcCurrentResult(e) {
     // Вычисляем сумму выводимую в блоке секций
     // от полной стоимости отнимаем стоимость калиток, ворот, автопривода
     // умножаем на коэффициент и прибавляем стоимость доставки
-    let totalFenceSum = costFence - calcData['costGate'][gateFence];
-    totalFenceSum -= calcData['swingGates'][swingGates];
-    totalFenceSum -= calcData['slidingGates'][slidingGates];   
+    let totalFenceSum = costFence - parseInt(calcData['costGate'][gateFence]);
+    totalFenceSum -= parseInt(calcData['swingGates'][swingGates]);
+    totalFenceSum -= parseInt(calcData['slidingGates'][slidingGates]);   
     totalFenceSum -= autoDrive;
-    totalFenceSum *= calcData['k'];
+    totalFenceSum *= parseFloat(calcData['k']);
 
-    totalFenceSum += calcDelivery.innerText;
+    totalFenceSum += costDelivery;
 
     calcSection.innerText = quantitySection + " (" + areaFence.toFixed(2) + " м²)";
 
