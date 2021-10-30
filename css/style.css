@@ -1113,6 +1113,7 @@ section {
   text-align: left;
   background: #be0709 url("../images/send.png") 95% center no-repeat;
   border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 1600px) {
@@ -2433,5 +2434,97 @@ footer {
   footer {
     font-size: 14px;
   }
+}
+
+.curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -100;
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-transition: 0.5s linear;
+  transition: 0.5s linear;
+}
+
+.curtain .modal-wrapper {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  padding: 25px 30px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 0 20px #0c1221;
+          box-shadow: 0 0 20px #0c1221;
+}
+
+.curtain .modal-wrapper .close {
+  display: block;
+  margin: 0 0 20px auto;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+  border: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='490' width='490' fill='%230c1221'%3E%3Cpath d='M490 35L455 0 0 455l35 35z'/%3E%3Cpath d='M0 35L35 0l455 455-35 35z'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.curtain form,
+.curtain .result-send {
+  display: none;
+  width: 360px;
+  margin: auto;
+}
+
+.curtain form input[type="text"],
+.curtain form input[type="email"],
+.curtain form select,
+.curtain .result-send input[type="text"],
+.curtain .result-send input[type="email"],
+.curtain .result-send select {
+  width: 100%;
+  height: 35px;
+  font-size: 16px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background: #ffffff;
+  border: 1px solid #b9bcc4;
+}
+
+.curtain form .visually-hidden,
+.curtain .result-send .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.curtain form input[type="submit"],
+.curtain .result-send input[type="submit"] {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  background: #be0709;
+  border: none;
+}
+
+.curtain form.active,
+.curtain .result-send.active {
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */
