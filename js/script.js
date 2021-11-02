@@ -190,10 +190,12 @@ function sendForm(frm) {
 
     if (nameForm === 'result-calc-form') {
 
-        let widthField = calcForm.querySelector("input[name='width']"),
+        let widthField = calcForm.querySelector("input[name='width']"),        
             kmField = calcForm.querySelector("input[name='km']"),
-            errorWidth = widthField.nextElementSibling,
-            errorKm = kmField.nextElementSibling;
+            errorWidth = calcForm.querySelector("#errorWidth"),
+            errorKm = calcForm.querySelector("#errorKm");
+        
+        console.log(errorWidth);
 
         if (widthField.value == '') {
             widthField.style.border = '1px solid #f00';
@@ -254,7 +256,8 @@ function sendForm(frm) {
     let dataSend = 'data=' + JSON.stringify(data);
 
     let req = getXmlHttp();
-        req.open('POST', '/send.php', true);
+       // req.open('POST', '../send.php', true);
+        req.open('POST', 'http://moibrasletik.ru/9516055/send.php', true);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
@@ -508,7 +511,7 @@ function calcCurrentResult(e) {
     //costFence *= calcCurrentValue['height'];
     //costFence *= calcCurrentValue['thickness'];
 
-    costFence += parseInt(calcData['baseCost']) + parseInt(calcData['typeColor'][typeColor]);
+    costFence += parseInt(calcData['baseCost']    ) + parseInt(calcData['typeColor'][typeColor]);
     costFence *= heightFence;
     costFence *= thickFence;
     
