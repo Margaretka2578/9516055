@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . '/recaptchalib.php';
+//require_once __DIR__ . '/recaptchalib.php';
 
-$protocol="http";
-$secretCaptcha = '6Lf93hgcAAAAALnBFzpsGN-uIMbfJGXimawWOZZe';
-$responseCaptcha = null;
+//$protocol="http";
+//$secretCaptcha = '6Lf93hgcAAAAALnBFzpsGN-uIMbfJGXimawWOZZe';
+//$responseCaptcha = null;
 
 if($_SERVER['HTTPS']) $protocol = 'https';
 
@@ -16,31 +16,31 @@ if ($_POST) {
 
     $currentForm = $data['form'];
 
-    if ($currentForm == "feedback-form") {
+    //if ($currentForm == "feedback-form") {
 
-        $reCaptcha = new ReCaptcha($secretCaptcha);
+      //  $reCaptcha = new ReCaptcha($secretCaptcha);
 
-        if ($data["reCaptcha"]) {
+        //if ($data["reCaptcha"]) {
 
-            $responseCaptcha = $reCaptcha->verifyResponse(
-                $_SERVER["REMOTE_ADDR"],
-                $data["reCaptcha"]
-            );
+          //  $responseCaptcha = $reCaptcha->verifyResponse(
+            //    $_SERVER["REMOTE_ADDR"],
+              //  $data["reCaptcha"]
+            //);
 
-        }
+        //}
 
-        if ($responseCaptcha == null && !$responseCaptcha->success) {
+        //if ($responseCaptcha == null && !$responseCaptcha->success) {
 
-            echo 'error captcha';
-            exit();
+          //  echo 'error captcha';
+            //exit();
 
-        }
+        //}
 
-    }
+    //}
 
     //$to = 'info@order-work.ru';
     // $to = "businessbank@mail.ru";
-    $to = "moroslina@yandex.ru";
+    $to =  "moroslina@yandex.ru";
     $message = "";
     $sub = "";
 
@@ -157,7 +157,8 @@ if ($_POST) {
 
     $headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-    $headers .= 'From: info@order-work.ru' . "\r\n";
+    $headers .= 'From: support@9516055.ru' . "\r\n";
+   
 
     $send = mail($to, $sub, $message, $headers);
 

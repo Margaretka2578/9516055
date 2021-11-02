@@ -40,7 +40,7 @@
             <div class="header-phone">
                 Соблюдаем сроки согласно договору<br><span>+7 (921) 951-60-55</span>
             </div>
-            <div class="header-call-for-cons">
+            <div class="header-call-for-cons" onclick="openDialog('consultation-form')">
                 <div class="header-call-for-cons-text">Получить бесплатную <br> консультацию</div>
             </div>
         </header>
@@ -203,6 +203,7 @@
                                     </div>
                                     <div class="calculator-form-item-value">
                                         <input type="number" id="width" name="width" value="1" step="1" min="1">
+                                        <div class="error-field" id="errorWidth"></div>
                                     </div>
                                 </div>   
                                 <div class="calculator-form-additional-info">
@@ -231,6 +232,7 @@
                                     </div>
                                     <div class="calculator-form-item-value">
                                         <input type="number" value="0" id="km" name="km" step="1" min="0">
+                                        <div class="error-field" id="errorKm"></div>
                                     </div>
                                 </div>
                                 <div class="calculator-form-item">
